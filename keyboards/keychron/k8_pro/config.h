@@ -92,3 +92,12 @@
 /* Factory test keys */
 #define FN_KEY1 MO(1)
 #define FN_KEY2 MO(3)
+
+enum layers{
+  XMAC_BASE,
+  XMAC_FN,
+  XA,
+  XWIN_BASE,
+  XWIN_FN,
+  XB
+};

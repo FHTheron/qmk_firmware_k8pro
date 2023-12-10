@@ -51,13 +51,13 @@
 // Constant
 #define MK_3_SPEED
 #define MK_C_OFFSET_UNMOD       16    //  Cursor offset per movement (unmodified)
-#define MK_C_INTERVAL_UNMOD     16    //  Time between cursor movements (unmodified)
+#define MK_C_INTERVAL_UNMOD     4    //  Time between cursor movements (unmodified)
 #define MK_C_OFFSET_0           2     //  Cursor offset per movement (KC_ACL0)
-#define MK_C_INTERVAL_0         8    //  Time between cursor movements (KC_ACL0)
-#define MK_C_OFFSET_1           4     //  Cursor offset per movement (KC_ACL1)
-#define MK_C_INTERVAL_1         8    //  Time between cursor movements (KC_ACL1)
-#define MK_C_OFFSET_2           8    //  Cursor offset per movement (KC_ACL2)
-#define MK_C_INTERVAL_2         8    //  Time between cursor movements (KC_ACL2)
+#define MK_C_INTERVAL_0         4    //  Time between cursor movements (KC_ACL0)
+#define MK_C_OFFSET_1           6     //  Cursor offset per movement (KC_ACL1)
+#define MK_C_INTERVAL_1         4    //  Time between cursor movements (KC_ACL1)
+#define MK_C_OFFSET_2           12    //  Cursor offset per movement (KC_ACL2)
+#define MK_C_INTERVAL_2         4    //  Time between cursor movements (KC_ACL2)
 #define MK_W_OFFSET_UNMOD       1     //  Scroll steps per scroll action (unmodified)
 #define MK_W_INTERVAL_UNMOD     40    //  Time between scroll steps (unmodified)
 #define MK_W_OFFSET_0           1     //  Scroll steps per scroll action (KC_ACL0)
@@ -69,16 +69,14 @@
 
 // Kinetic
 // #define MK_KINETIC_SPEED
-// #define MOUSEKEY_INTERVAL 8
+// #define MOUSEKEY_INTERVAL 4
 // #define MOUSEKEY_MOVE_DELTA 4
-// #define MOUSEKEY_BASE_SPEED 2000
-// #define MOUSEKEY_DECELERATED_SPEED        200
+// #define MOUSEKEY_BASE_SPEED 1200
+// #define MOUSEKEY_DECELERATED_SPEED        300
 // #define MOUSEKEY_ACCELERATED_SPEED        1000
 // #define MOUSEKEY_WHEEL_INITIAL_MOVEMENTS 2
 // #define MOUSEKEY_WHEEL_BASE_MOVEMENTS    48
 // #define MOUSEKEY_WHEEL_ACCELERATED_MOVEMENTS 64
-
-#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 
 // Accel
 // #define MOUSEKEY_INTERVAL 8
@@ -87,5 +85,7 @@
 // #define MOUSEKEY_TIME_TO_MAX 140
 // #define MOUSEKEY_WHEEL_INTERVAL 16
 
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+#define TAPPING_TOGGLE 2
 
 #endif

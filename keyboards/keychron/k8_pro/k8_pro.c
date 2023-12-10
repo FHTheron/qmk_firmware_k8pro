@@ -40,6 +40,7 @@ static uint32_t factory_timer_buffer            = 0;
 static uint32_t power_on_indicator_timer_buffer = 0;
 static uint32_t siri_timer_buffer               = 0;
 static uint8_t  mac_keycode[4]                  = {KC_LOPT, KC_ROPT, KC_LCMD, KC_RCMD};
+static bool shift_down = false;
 
 key_combination_t key_comb_list[4] = {
     {2, {KC_LWIN, KC_TAB}},        // Task (win)
@@ -76,6 +77,10 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     static uint8_t host_idx = 0;
 
     switch (keycode) {
+        case KC_LSFT:
+        case KC_RSFT:
+            shift_down = !!record->event.pressed;
+            return true;
         case KC_LOPTN:
         case KC_ROPTN:
         case KC_LCMMD:
@@ -178,7 +183,7 @@ void matrix_scan_kb(void) {
 
             writePin(BAT_LOW_LED_PIN, !BAT_LOW_LED_PIN_ON_STATE);
             writePin(H3, !HOST_LED_PIN_ON_STATE);
-            if (!host_keyboard_led_state().caps_lock) writePin(LED_CAPS_LOCK_PIN, !LED_PIN_ON_STATE);
+            // if (!host_keyboard_led_state().caps_lock) writePin(LED_CAPS_LOCK_PIN, !LED_PIN_ON_STATE);
         } else {
             writePin(BAT_LOW_LED_PIN, BAT_LOW_LED_PIN_ON_STATE);
             writePin(H3, HOST_LED_PIN_ON_STATE);
@@ -316,3 +321,60 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
     }
 }
 #endif
+
+
+void caps_word_set_user(bool active) {
+    if (active)
+        writePin(LED_CAPS_LOCK_PIN, LED_PIN_ON_STATE);
+    else
+        writePin(LED_CAPS_LOCK_PIN, 0);
+}
+
+
+// layer_state_t layer_state_set_user(layer_state_t state) {
+//     switch (get_highest_layer(state)) {
+//     case XMAC_FN:
+//         rgb_matrix_set_color_all(0xFF,  0x00, 0x00);
+//         break;
+//     default:
+//         rgb_matrix_set_color_all(0x00,  0xFF, 0x00);
+//         break;
+//     }
+//   return state;
+// }
+
+bool rgb_matrix_indicators_user(void) {
+    if (is_caps_word_on()) {
+        rgb_matrix_set_color_all(0,  0, 0);
+        for (int i = 34; i <= 43; i++)
+            rgb_matrix_set_color(i, 0xFF,  0, 0);
+        for (int i = 51; i <= 59; i++)
+            rgb_matrix_set_color(i, 0xFF,  0, 0);
+        for (int i = 64; i <= 70; i++)
+            rgb_matrix_set_color(i, 0xFF,  0, 0);
+        rgb_matrix_set_color(27, 0xFF,  0, 0);
+        return false;
+    }
+
+    if (shift_down) {
+        rgb_matrix_set_color_all(0,  0, 0);
+        rgb_matrix_set_color(79, 0,  0, 0xff);
+        rgb_matrix_set_color(74, 0,  0, 0xff);
+        rgb_matrix_set_color(63, 0,  0, 0xff);
+        return false;
+    }
+
+    int layer = get_highest_layer(layer_state);
+
+    if (layer == XA || layer == XB) {
+        rgb_matrix_set_color_all(0,  0x88, 0);
+        return false;
+    }
+    if (layer == XMAC_FN || layer == XWIN_FN) {
+        rgb_matrix_set_color_all(0,  0x88, 0x88);
+        return false;
+    }
+
+    rgb_matrix_set_color_all(0,  0, 0);
+    return false;
+}
