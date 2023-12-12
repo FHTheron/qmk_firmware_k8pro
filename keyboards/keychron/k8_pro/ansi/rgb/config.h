@@ -50,13 +50,13 @@
 
 // Constant
 #define MK_3_SPEED
-#define MK_C_OFFSET_UNMOD       16    //  Cursor offset per movement (unmodified)
+#define MK_C_OFFSET_UNMOD       8    //  Cursor offset per movement (unmodified)
 #define MK_C_INTERVAL_UNMOD     4    //  Time between cursor movements (unmodified)
 #define MK_C_OFFSET_0           2     //  Cursor offset per movement (KC_ACL0)
 #define MK_C_INTERVAL_0         4    //  Time between cursor movements (KC_ACL0)
-#define MK_C_OFFSET_1           6     //  Cursor offset per movement (KC_ACL1)
+#define MK_C_OFFSET_1           5     //  Cursor offset per movement (KC_ACL1)
 #define MK_C_INTERVAL_1         4    //  Time between cursor movements (KC_ACL1)
-#define MK_C_OFFSET_2           12    //  Cursor offset per movement (KC_ACL2)
+#define MK_C_OFFSET_2           8    //  Cursor offset per movement (KC_ACL2)
 #define MK_C_INTERVAL_2         4    //  Time between cursor movements (KC_ACL2)
 #define MK_W_OFFSET_UNMOD       1     //  Scroll steps per scroll action (unmodified)
 #define MK_W_INTERVAL_UNMOD     40    //  Time between scroll steps (unmodified)
