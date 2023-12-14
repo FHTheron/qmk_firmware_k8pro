@@ -323,12 +323,12 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
 #endif
 
 
-void caps_word_set_user(bool active) {
-    if (active)
-        writePin(LED_CAPS_LOCK_PIN, LED_PIN_ON_STATE);
-    else
-        writePin(LED_CAPS_LOCK_PIN, 0);
-}
+// void caps_word_set_user(bool active) {
+//     if (active)
+//         writePin(LED_CAPS_LOCK_PIN, LED_PIN_ON_STATE);
+//     else
+//         writePin(LED_CAPS_LOCK_PIN, 0);
+// }
 
 
 // layer_state_t layer_state_set_user(layer_state_t state) {
@@ -344,6 +344,9 @@ void caps_word_set_user(bool active) {
 // }
 
 bool rgb_matrix_indicators_user(void) {
+    if (bat_level_animiation_actived() || indicator_is_running())
+        return true;
+
     if (is_caps_word_on()) {
         rgb_matrix_set_color_all(0,  0, 0);
         for (int i = 34; i <= 43; i++)
